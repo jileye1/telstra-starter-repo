@@ -1,15 +1,20 @@
 package au.com.telstra.simcardactivator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Sim {
     private String iccid;
     private String customerEmail;
+    private boolean active;
 
     public Sim() {}
 
-    public Sim(String iccid, String customerEmail) {
+    public Sim(String iccid, String customerEmail, boolean active) {
         super();
         this.iccid = iccid;
         this.customerEmail = customerEmail;
+        this.active = active;
     }
 
     // Override toString method to create JSON string
@@ -17,7 +22,9 @@ public class Sim {
     public String toString() {
         return 
         "{iccid:" + iccid + 
-        "customerEmail:" + customerEmail + "}";
+        ", customerEmail:" + customerEmail +
+        ", active:" + active   
+        + "}";
     }
 
     // Getters and setters for properties
@@ -35,6 +42,14 @@ public class Sim {
 
     public void setCustomerEmail(String email) {
         this.customerEmail = email;
+    }
+
+    public boolean getActiveStatus() {
+        return active;
+    }
+
+    public void setActiveStatus(boolean active) {
+        this.active = active;
     }
     
 }
