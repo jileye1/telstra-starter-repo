@@ -1,9 +1,20 @@
 package au.com.telstra.simcardactivator;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Sim {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String iccid;
     private String customerEmail;
     private boolean active;
@@ -25,6 +36,10 @@ public class Sim {
         ", customerEmail:" + customerEmail +
         ", active:" + active   
         + "}";
+    }
+
+    public Long getId() {
+        return id;
     }
 
     // Getters and setters for properties
